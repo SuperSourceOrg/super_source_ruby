@@ -8,6 +8,8 @@ rspec
 
 gem build supported_source.gemspec
 
+Make sure your ~/.gem credentials are the correct one
+
 gem push supported_source-VERSION.gem
 
 ## Requiring the local version of the Gem

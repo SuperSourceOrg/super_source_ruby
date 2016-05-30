@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.executables = ["supso"]
   spec.homepage = "http://supportedsource.org/"
   spec.name = "supported_source"
-  spec.summary = "Learn who's using your project with Supported Source."
+  spec.summary = "See who's using your project with Supported Source."
   spec.version = SupportedSource::VERSION
 
   spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
