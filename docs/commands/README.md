@@ -5,4 +5,7 @@ run `bundle install` to install the Supported Source gem.
 
 The list of commands is:
 
-- [console](/docs/commands/console)
+- [login](/docs/commands/login)
+- [logout](/docs/commands/logout)
+- [update](/docs/commands/update)
+- [whoami](/docs/commands/whoami)
