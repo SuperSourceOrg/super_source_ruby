@@ -49,7 +49,7 @@ module SupportedSource
     end
 
     def self.acceptable_commands
-      ['info', 'logout', 'login', 'update', 'whoami']
+      ['logout', 'login', 'show', 'update', 'whoami']
     end
 
     def self.update
@@ -98,7 +98,7 @@ module SupportedSource
       puts "Successfully signed in as #{ email }."
     end
 
-    def self.info
+    def self.show
       Util.require_all_gems!
       if Project.projects.length == 0
         puts "0 projects using Supported Source."
