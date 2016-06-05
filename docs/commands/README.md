@@ -7,5 +7,6 @@ The list of commands is:
 
 - [login](/docs/commands/login)
 - [logout](/docs/commands/logout)
+- [show](/docs/commands/show)
 - [update](/docs/commands/update)
 - [whoami](/docs/commands/whoami)

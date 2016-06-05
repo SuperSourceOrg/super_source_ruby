@@ -17,8 +17,12 @@ module SupportedSource
     def ensure_required!
       return if Commands.command_mode?
 
-      if !self.valid?
+      if !self.token_file_exists?
         raise MissingProjectToken.new("Missing token for project: #{ name }. To get the project token, run `supso update`.")
+      end
+
+      if !self.valid?
+        raise InvalidProjectToken.new("Invalid token for project: #{ name }. To update the project token, run `supso update`.")
       end
     end
 
@@ -34,10 +38,6 @@ module SupportedSource
       puts "#{ self.name } (#{ self.valid? ? 'valid' : 'not valid' })\n"
     end
 
-    def token_filename
-      self.filename('token')
-    end
-
     def load_client_data
       if File.exist?(self.data_filename)
         JSON.parse(File.read(self.data_filename))
@@ -47,11 +47,19 @@ module SupportedSource
     end
 
     def load_client_token
-      if File.exist?(self.token_filename)
+      if self.token_file_exists?
         File.read(self.token_filename)
       else
         nil
       end
+    end
+
+    def token_filename
+      self.filename('token')
+    end
+
+    def token_file_exists?
+      File.exist?(self.token_filename)
     end
 
     def save_project_data!
