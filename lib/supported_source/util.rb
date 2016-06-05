@@ -24,6 +24,9 @@ module SupportedSource
       }
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
+      if url.start_with?('https://')
+        http.use_ssl = true
+      end
       response = http.get(uri.path, json_headers)
 
       if response.code.to_i == 200
@@ -43,6 +46,9 @@ module SupportedSource
 
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
+      if url.start_with?('https://')
+        http.use_ssl = true
+      end
       response = http.post(uri.path, data.to_json, json_headers)
 
       if response.code.to_i == 200
