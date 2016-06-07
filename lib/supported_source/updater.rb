@@ -36,6 +36,7 @@ module SupportedSource
     end
 
     def Updater.update_returning_user(user)
+      org = Organization.current_organization_or_fetch
       Util.require_all_gems!
       Updater.update_projects!
     end
