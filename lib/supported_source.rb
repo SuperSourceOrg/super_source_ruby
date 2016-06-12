@@ -38,7 +38,6 @@ module SupportedSource
   create_module_var("project_supso_config_root", detect_project_root + '/.supso')
   create_module_var("user_supso_config_root", "#{ Dir.home }/.supso")
   FileUtils.mkdir_p(SupportedSource.user_supso_config_root)
-  create_module_var("operating_mode", 'default')
   create_module_var("supso_api_root", "https://supportedsource.org/api/v1/")
 
   create_module_var("config", {})

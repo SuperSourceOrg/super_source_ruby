@@ -15,14 +15,12 @@ module SupportedSource
     end
 
     def ensure_required!
-      return if Commands.command_mode?
-
       if !self.token_file_exists?
-        raise MissingProjectToken.new("Missing token for project: #{ name }. To get the project token, run `supso update`.")
+        raise MissingProjectToken.new("Missing Supported Source token for project: #{ name }.#{ Exceptions.help_message }")
       end
 
       if !self.valid?
-        raise InvalidProjectToken.new("Invalid token for project: #{ name }. To update the project token, run `supso update`.")
+        raise InvalidProjectToken.new("Invalid Supported Source token for project: #{ name }.#{ Exceptions.help_message }")
       end
     end
 
@@ -32,10 +30,6 @@ module SupportedSource
 
     def data_filename
       self.filename('json')
-    end
-
-    def puts_info
-      puts "#{ self.name } (#{ self.valid? ? 'valid' : 'not valid' })\n"
     end
 
     def load_client_data
@@ -62,29 +56,6 @@ module SupportedSource
       File.exist?(self.token_filename)
     end
 
-    def save_project_data!
-      if self.client_data.empty?
-        if File.exists?(self.data_filename)
-          File.delete(self.data_filename)
-        end
-        if File.exists?(self.token_filename)
-          File.delete(self.token_filename)
-        end
-      else
-        Project.save_project_directory_readme!
-
-        Util.ensure_path_exists!(self.data_filename)
-        file = File.open(self.data_filename, 'w')
-        file << self.client_data.to_json
-        file.close
-
-        Util.ensure_path_exists!(self.token_filename)
-        file = File.open(self.token_filename, 'w')
-        file << self.client_token
-        file.close
-      end
-    end
-
     def valid?
       if !self.client_token || !self.client_data
         return false
@@ -105,10 +76,6 @@ module SupportedSource
       public_key.verify(digest, Base64.decode64(self.client_token), self.client_data.to_json)
     end
 
-    def save_data!
-      self.save_project_data
-    end
-
     class << self
       attr_accessor :projects
     end
@@ -121,17 +88,6 @@ module SupportedSource
       project = Project.new(name, api_token, options)
       self.projects << project
       project.ensure_required!
-    end
-
-    def self.save_project_directory_readme!
-      readme_path = "#{ SupportedSource.project_supso_config_root }/README.txt"
-      if !File.exists?(readme_path)
-        readme_contents = File.open("#{ SupportedSource.gem_root }/lib/templates/project_dir_readme.txt", 'r').read
-        Util.ensure_path_exists!(readme_path)
-        file = File.open(readme_path, 'w')
-        file << readme_contents
-        file.close
-      end
     end
   end
 end
