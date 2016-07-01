@@ -1,6 +1,7 @@
 module SupportedSource
   class InvalidProjectToken < StandardError; end
   class MissingProjectToken < StandardError; end
+  class MissingGemfile < StandardError; end
 
   module Exceptions
     def Exceptions.help_message

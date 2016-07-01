@@ -8,6 +8,28 @@ module SupportedSource
       first.merge(second, &merger)
     end
 
+    def Util.detect_project_root
+      project_root = Dir.getwd
+      while true
+        if project_root == ""
+          project_root = nil
+          break
+        end
+
+        if File.exist?(project_root + '/Gemfile') ||
+            File.exist?(project_root + '/package.json') ||
+            File.exist?(project_root + '.supso')
+          break
+        end
+
+        detect_project_root_splits = project_root.split("/")
+        detect_project_root_splits = detect_project_root_splits[0..detect_project_root_splits.length - 2]
+        project_root = detect_project_root_splits.join("/")
+      end
+
+      project_root
+    end
+
     def Util.pluralize(count, word)
       if count == 1
         word
@@ -17,7 +39,11 @@ module SupportedSource
     end
 
     def Util.require_all_gems!
-      Bundler.require(:default, :development, :test, :production)
+      begin
+        Bundler.require(:default, :development, :test, :production)
+      rescue Gem::LoadError
+        # Keep going
+      end
     end
 
     def Util.underscore_to_camelcase(str)
