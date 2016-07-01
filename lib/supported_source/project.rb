@@ -16,7 +16,7 @@ module SupportedSource
 
     def ensure_required!
       if SupportedSource.project_root.blank?
-        raise MissingGemfile.new("Could not find a Gemfile in the current working directory or any parent directories. Are you sure you're running this from the right place?")
+        raise MissingProjectRoot.new("Could not detect a Supported Source project root in working directory or any parent directories. Are you sure you're running this from the right place?")
       end
 
       if !self.token_file_exists?

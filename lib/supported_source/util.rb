@@ -41,7 +41,7 @@ module SupportedSource
     def Util.require_all_gems!
       begin
         Bundler.require(:default, :development, :test, :production)
-      rescue Gem::LoadError
+      rescue Gem::LoadError, Bundler::GemfileNotFound
         # Keep going
       end
     end
