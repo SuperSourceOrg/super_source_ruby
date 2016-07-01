@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SupportedSource do
   it 'has the right version' do
-    expect(SupportedSource::VERSION).to eq('0.9.3')
+    expect(SupportedSource::VERSION).to eq('0.9.4')
   end
 
   it 'has the right api endpoint' do
