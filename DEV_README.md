@@ -16,7 +16,7 @@ gem push supported_source-VERSION.gem
 
 Use something like this:
 
-gem 'supported_source', '0.8.0', path: 'local/path/to/gem'
+gem 'supported_source', '0.9.6', path: 'local/path/to/gem'
 
 
 ## Philosophy
