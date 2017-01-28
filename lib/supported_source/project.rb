@@ -10,21 +10,37 @@ module SupportedSource
       @name = name
       @api_token = api_token
       @options = options
+      @options[:level] ||= :error
       @client_data = self.load_client_data
       @client_token = self.load_client_token
     end
 
     def ensure_required!
       if SupportedSource.project_root.nil?
-        raise MissingProjectRoot.new("Could not detect a Supported Source project root in working directory or any parent directories. Are you sure you're running this from the right place?")
+        self.report_problem!("Could not detect a Supported Source project root in working directory or any parent " +
+                "directories. Are you sure you're running this from the right place?",
+            MissingProjectRoot)
+        return
       end
 
       if !self.token_file_exists?
-        raise MissingProjectToken.new("Missing Supported Source token for project: #{ name }.#{ Exceptions.help_message }")
+        self.report_problem!("Missing Supported Source token for " +
+                    "project: #{ name }.#{ Exceptions.help_message }", MissingProjectToken)
+        return
       end
 
       if !self.valid?
-        raise InvalidProjectToken.new("Invalid Supported Source token for project: #{ name }.#{ Exceptions.help_message }")
+        self.report_problem!("Invalid Supported Source token for project: #{ name }.#{ Exceptions.help_message }",
+            InvalidProjectToken)
+        return
+      end
+    end
+
+    def report_problem!(message, error_class)
+      if @options[:level] == :warn
+        warn("WARNING: " + message)
+      else
+        raise error_class.new(message)
       end
     end
 
