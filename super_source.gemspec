@@ -4,9 +4,9 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'super_source/version'
 
 Gem::Specification.new do |spec|
-  spec.authors = ["Jeff Pickhardt"]
+  spec.authors = ["Super Source"]
   spec.description = "Learn who's using your project with Super Source."
-  spec.email = ["pickhardt@gmail.com"]
+  spec.email = ["admin@supso.org"]
   spec.homepage = "http://supso.org/"
   spec.name = "super_source"
   spec.summary = "See who's using your project with Super Source."
