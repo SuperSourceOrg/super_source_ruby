@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary = "See who's using your project with Super Source."
   spec.version = SuperSource::VERSION
 
-  spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) || f.match(%r{supported_source}) }
   spec.bindir = "bin"
   spec.require_paths = ["lib"]
 
