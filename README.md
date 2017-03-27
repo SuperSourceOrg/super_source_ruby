@@ -1,15 +1,15 @@
-# Supported Source
+# Super Source
 
 ## Installation
 
-##### Instructions for using Supported Source
+##### Instructions for using Super Source
 
 Create a new, empty directory. Inside this directory, create a file named Gemfile, and add the following to it:
 
 ```ruby
 source 'https://rubygems.org'
 
-gem 'supported_source'
+gem 'super_source'
 ```
 
 Then execute:
@@ -18,8 +18,8 @@ Then execute:
 
 ## Documentation
 
-Visit the [docs page](http://supportedsource.org/docs/overview/welcome) to read the documentation.
+Visit the [docs page](http://supersource.org/docs/overview/welcome) to read the documentation.
 
 ## Contributing
 
-To contribute, get in touch at http://supportedsource.org/ so that we can share the [Contributor License Agreement (CLA)](https://en.wikipedia.org/wiki/Contributor_License_Agreement) with you, then create a pull request.
+To contribute, get in touch at http://supersource.org/ so that we can share the [Contributor License Agreement (CLA)](https://en.wikipedia.org/wiki/Contributor_License_Agreement) with you, then create a pull request.

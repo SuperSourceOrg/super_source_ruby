@@ -1,5 +1,5 @@
-module SupportedSource
-  if !defined?(SupportedSource::VERSION)
+module SuperSource
+  if !defined?(SuperSource::VERSION)
     VERSION_MAJOR = 0
     VERSION_MINOR = 10
     VERSION_PATCH = 0

@@ -2,29 +2,29 @@
 
 ## Publishing to Rubygems
 
-Ensure the version number is updated (lib/supported_source/version.rb.
+Ensure the version number is updated (lib/super_source/version.rb.
 
 rspec
 
-gem build supported_source.gemspec
+gem build super_source.gemspec
 
 Make sure your ~/.gem credentials are the correct one
 
-gem push supported_source-VERSION.gem
+gem push super_source-VERSION.gem
 
 ## Requiring the local version of the Gem
 
 Use something like this:
 
-gem 'supported_source', '0.9.6', path: 'local/path/to/gem'
+gem 'super_source', '0.9.6', path: 'local/path/to/gem'
 
 
 ## Philosophy
 
-Supported Source is split into two types of packages: the supso command line interface,
-and packages included with the projects that use Supported Source.
+Super Source is split into two types of packages: the supso command line interface,
+and packages included with the projects that use Super Source.
 
-This gem, the Supported Source Ruby gem, is an example of the latter.
+This gem, the Super Source Ruby gem, is an example of the latter.
 
 These packages should:
 

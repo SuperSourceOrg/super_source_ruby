@@ -1,6 +1,6 @@
 require 'yaml'
 
-module SupportedSource
+module SuperSource
   class User
     attr_accessor :email, :name, :id, :auth_token
 
@@ -14,7 +14,7 @@ module SupportedSource
     end
 
     def self.current_user_filename
-      "#{ SupportedSource.user_supso_config_root }/current_user.json"
+      "#{ SuperSource.user_supso_config_root }/current_user.json"
     end
 
     def self.current_user_from_file

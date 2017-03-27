@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'supported_source/version'
+require 'super_source/version'
 
 Gem::Specification.new do |spec|
   spec.authors = ["Jeff Pickhardt"]
-  spec.description = "Learn who's using your project with Supported Source."
+  spec.description = "Learn who's using your project with Super Source."
   spec.email = ["pickhardt@gmail.com"]
-  spec.homepage = "http://supportedsource.org/"
-  spec.name = "supported_source"
-  spec.summary = "See who's using your project with Supported Source."
-  spec.version = SupportedSource::VERSION
+  spec.homepage = "http://supso.org/"
+  spec.name = "super_source"
+  spec.summary = "See who's using your project with Super Source."
+  spec.version = SuperSource::VERSION
 
   spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir = "bin"

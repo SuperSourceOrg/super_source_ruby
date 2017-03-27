@@ -1,6 +1,6 @@
 require 'json'
 
-module SupportedSource
+module SuperSource
   class Organization
     attr_accessor :name, :id
 
@@ -12,7 +12,7 @@ module SupportedSource
     end
 
     def self.current_organization_filename
-      "#{ SupportedSource.project_supso_config_root }/current_organization.json"
+      "#{ SuperSource.project_supso_config_root }/current_organization.json"
     end
 
     def self.current_organization_from_file

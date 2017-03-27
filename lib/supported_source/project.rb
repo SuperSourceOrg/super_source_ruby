@@ -2,7 +2,7 @@ require 'json'
 require 'openssl'
 require 'base64'
 
-module SupportedSource
+module SuperSource
   class Project
     attr_accessor :name, :api_token, :client_data, :client_token
 
@@ -16,7 +16,7 @@ module SupportedSource
     end
 
     def ensure_required!
-      if SupportedSource.project_root.nil?
+      if SuperSource.project_root.nil?
         self.report_problem!("Could not detect a Supported Source project root in working directory or any parent " +
                 "directories. Are you sure you're running this from the right place?",
             MissingProjectRoot)
@@ -39,13 +39,13 @@ module SupportedSource
     def report_problem!(message, error_class)
       if @options[:level] == :warn
         warn("WARNING: " + message)
-      else
+      elsif @options[:level] == :error
         raise error_class.new(message)
       end
     end
 
     def filename(filetype)
-      "#{ SupportedSource.project_supso_config_root }/projects/#{ self.name }.#{ filetype }"
+      "#{ SuperSource.project_supso_config_root }/projects/#{ self.name }.#{ filetype }"
     end
 
     def data_filename
@@ -90,7 +90,7 @@ module SupportedSource
         return false
       end
 
-      public_key = OpenSSL::PKey::RSA.new File.read("#{ SupportedSource.gem_root }/lib/other/supso2.pub")
+      public_key = OpenSSL::PKey::RSA.new File.read("#{ SuperSource.gem_root }/lib/other/supso2.pub")
       digest = OpenSSL::Digest::SHA256.new
 
       public_key.verify(digest, Base64.decode64(self.client_token), self.client_data.to_json)
